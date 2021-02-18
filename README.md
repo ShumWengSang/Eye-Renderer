@@ -9,6 +9,7 @@ The technique used here is known as path-tracing, as we trace the path the ray t
 As I have time I will update this renderer. Things on the line include:
 * Real-time rendering (not guranteed 60 FPS)
 * Bounding Hiearchy Volume
+* Mulithreading the rendering (and not OpenMP)
 * and more stuff as I learn from the series!
 
 Here is the sample output at 50 ray-trace bounces.
