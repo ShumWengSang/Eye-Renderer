@@ -16,7 +16,7 @@ Here is the sample output at 50 ray-trace bounces.
 ![High resolution output](output.png)
 
 ## Build
-Use CMake to generate project. It should work out of the box.
+Use CMake to generate project. It should work out of the box with compilers that support OpenMP. This was compiled with MSVC compiler. OpenMP is used to multithread the rendering.
 
 ## Images
 
