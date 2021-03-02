@@ -13,7 +13,30 @@ As I have time I will update this renderer. Things on the line include:
 * and more stuff as I learn from the series!
 
 Here is the sample output at 50 ray-trace bounces.
-![GitHub Logo](output.png)
+![High resolution output](output.png)
 
 ## Build
 Use CMake to generate project. It should work out of the box.
+
+## Images
+
+Here are some nice images for you to enjoy from the project. Although most of them are rendered in low quality so there are bunch of noise
+
+![Cornell Room](Images/Cornel.png)
+
+![Room](Images/room.png)
+
+![Cornell Room](Images/Dielectric.png)
+
+![Cornell Room](Images/Diffuse.png)
+
+![Cornell Room](Images/EarthTexture.png)
+
+![Cornell Room](Images/LightSource.png)
+
+![Cornell Room](Images/Marble.png)
+
+![Cornell Room](Images/Metal-Fuzziness.png)
+
+![Cornell Room](Images/Metal.png)
+
