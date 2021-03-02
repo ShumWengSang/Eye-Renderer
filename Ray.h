@@ -23,14 +23,16 @@
 
 class Ray {
 public:
+    Ray(vec3 const & origin, vec3 const & direction, double time = 0.0);
     Ray() = default;
-    Ray(vec3 const & a, vec3 const & b);
     vec3 Origin() const;
     vec3 Direction() const;
     vec3 At(double t) const;
-
-    vec3 A;
-    vec3 B;
+    double Time() const;
+public:
+    vec3 origin;
+    vec3 direction;
+    double time;
 };
 
 

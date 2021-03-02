@@ -15,10 +15,11 @@
  * Author: Roland Shum, roland.shum@digipen.edu
  * Creation date: 2/15/2021
  * End Header --------------------------------------------------------*/
-#include "stdafx.h"
+#include "../stdafx.h"
 #include "HittableList.h"
+#include "../AABB.h"
 
-HittableList::HittableList(std::shared_ptr<IHittable> object) {
+HittableList::HittableList(std::shared_ptr<IHittable> const & object) {
     Add(object);
 }
 
@@ -26,7 +27,7 @@ void HittableList::Clear() {
     objects.clear();
 }
 
-void HittableList::Add(std::shared_ptr<IHittable> object) {
+void HittableList::Add(std::shared_ptr<IHittable> const & object) {
     objects.emplace_back(object);
 }
 
@@ -45,4 +46,19 @@ bool HittableList::Hit(const Ray &r, double t_min, double t_max, HitRecord &rec)
         }
     }
     return hit_anything;
+}
+
+bool HittableList::BoundingBox(double time0, double time1, AABB &output_box) const {
+    if(objects.empty()) return false;
+
+    AABB tempBox;
+    bool firstBox = true;
+
+    for(const auto& object : objects)
+    {
+        if(!object->BoundingBox(time0, time1, tempBox)) return false;
+        output_box = firstBox ? tempBox : SurroundingBox(output_box, tempBox);
+        firstBox = false;
+    }
+    return true;
 }

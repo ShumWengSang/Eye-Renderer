@@ -6,7 +6,7 @@
  * Copyright (C) 2020 DigiPen Institute of Technology.
  * Reproduction or disclosure of this file or its contents without the prior
  * written consent of DigiPen Institute of Technology is prohibited.
- * File Name: HittableList.h
+ * File Name: Material.h
  * Purpose: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
  * Language: C++, G++
  * Platform: g++ (Ubuntu 9.3.0-10ubuntu2) 9.3, ThinkPad T430u, Nvidia GT 620M,
@@ -17,23 +17,17 @@
  * End Header --------------------------------------------------------*/
 
 
-#ifndef GNU_HITTABLELIST_H
-#define GNU_HITTABLELIST_H
-#include "IHittable.h"
+#ifndef GNU_MATERIAL_H
+#define GNU_MATERIAL_H
 
-class HittableList : public IHittable {
+struct HitRecord;
+class Ray;
+
+class Material {
 public:
-    HittableList() = default;
-    HittableList(std::shared_ptr<IHittable> object);
-
-    void Clear();
-    void Add(std::shared_ptr<IHittable> object);
-
-    virtual bool Hit(Ray const & r, double t_min, double t_max, HitRecord& rec) const override;
-
-public:
-    std::vector<std::shared_ptr<IHittable>> objects;
+    virtual bool Scatter(Ray const & r_in, HitRecord const & rec, vec3& attenuation, Ray& scattered) const = 0;
+    virtual Color Emitted(double u, double v, vec3 const & p) const;
 };
 
 
-#endif //GNU_HITTABLELIST_H
+#endif //GNU_MATERIAL_H

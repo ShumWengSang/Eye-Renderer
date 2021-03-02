@@ -6,7 +6,7 @@
  * Copyright (C) 2020 DigiPen Institute of Technology.
  * Reproduction or disclosure of this file or its contents without the prior
  * written consent of DigiPen Institute of Technology is prohibited.
- * File Name: Ray.cpp
+ * File Name: Sphere.h
  * Purpose: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
  * Language: C++, G++
  * Platform: g++ (Ubuntu 9.3.0-10ubuntu2) 9.3, ThinkPad T430u, Nvidia GT 620M,
@@ -15,25 +15,23 @@
  * Author: Roland Shum, roland.shum@digipen.edu
  * Creation date: 2/15/2021
  * End Header --------------------------------------------------------*/
-#include "stdafx.h"
-#include "Ray.h"
-Ray::Ray(const vec3 &orign, const vec3 &direction, double time)
-    : origin(orign), direction(direction), time(time){
 
-}
 
-vec3 Ray::Origin() const {
-    return origin;
-}
+#ifndef GNU_SPHERE_H
+#define GNU_SPHERE_H
+#include "IHittable.h"
+class Sphere : public IHittable {
+public:
+    Sphere() = default;
+    Sphere(vec3 Center, double r, std::shared_ptr<Material> m);
+    bool Hit(Ray const & r, double t_min, double t_max, HitRecord& rec) const override;
+    bool BoundingBox(double time0, double time1, AABB& outputBox) const override;
+    static void GetSphereUV(vec3 const & p, double& u, double & v);
+public:
+    vec3 center{};
+    double radius{};
+    std::shared_ptr<Material> matPtr;
+};
 
-vec3 Ray::Direction() const {
-    return direction;
-}
 
-vec3 Ray::At(double t) const {
-    return origin + t * direction;
-}
-
-double Ray::Time() const {
-    return time;
-}
+#endif //GNU_SPHERE_H

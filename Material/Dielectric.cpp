@@ -15,10 +15,10 @@
  * Author: Roland Shum, roland.shum@digipen.edu
  * Creation date: 2/15/2021
  * End Header --------------------------------------------------------*/
-#include "stdafx.h"
+#include "../stdafx.h"
 #include "Dielectric.h"
-#include "IHittable.h"
-#include "Ray.h"
+#include "../Hittable/IHittable.h"
+#include "../Ray.h"
 
 bool Dielectric::Scatter(const Ray &r_in, const HitRecord &rec, vec3 &attenuation, Ray &scattered) const {
     attenuation = vec3(1.0,1.0,1.0);
@@ -36,7 +36,7 @@ bool Dielectric::Scatter(const Ray &r_in, const HitRecord &rec, vec3 &attenuatio
     else
         direction = Refract(-rayDir, rec.normal, refractionRatio);
 
-    scattered = Ray(rec.p, direction);
+    scattered = Ray(rec.p, direction, r_in.Time());
     return true;
 }
 

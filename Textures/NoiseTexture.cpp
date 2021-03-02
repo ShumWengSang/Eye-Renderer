@@ -1,37 +1,27 @@
 //
-// Created by user on 2/15/2021.
+// Created by user on 2/28/2021.
 //
 
 /* Start Header -------------------------------------------------------
  * Copyright (C) 2020 DigiPen Institute of Technology.
  * Reproduction or disclosure of this file or its contents without the prior
  * written consent of DigiPen Institute of Technology is prohibited.
- * File Name: Metal.h
+ * File Name: NoiseTexture.cpp
  * Purpose: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
  * Language: C++, G++
  * Platform: g++ (Ubuntu 9.3.0-10ubuntu2) 9.3, ThinkPad T430u, Nvidia GT 620M,
  *           OpenGL version string: 4.6.0 NVIDIA 390.138
- * Project: gnu
+ * Project: Eye
  * Author: Roland Shum, roland.shum@digipen.edu
- * Creation date: 2/15/2021
+ * Creation date: 2/28/2021
  * End Header --------------------------------------------------------*/
+#include "../stdafx.h"
+#include "NoiseTexture.h"
 
+Color NoiseTexture::Value(double u, double v, const vec3 &p) const {
+    return Color(1,1,1) * 0.5 * (1 + sin(scale * p.z + 10 * noise.Turbulance(p)));
+}
 
-#ifndef GNU_METAL_H
-#define GNU_METAL_H
-#include "Material.h"
-#include "stdafx.h"
+NoiseTexture::NoiseTexture(double sc) : scale(sc){
 
-class Metal : public Material{
-public:
-    Metal(vec3 const & a, double f);
-
-    bool Scatter(const Ray &r_in, const HitRecord &rec, vec3 &attenuation, Ray &scattered) const override;
-
-public:
-    vec3 albedo;
-    double fuzziness;
-};
-
-
-#endif //GNU_METAL_H
+}

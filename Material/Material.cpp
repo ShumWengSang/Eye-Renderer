@@ -6,7 +6,7 @@
  * Copyright (C) 2020 DigiPen Institute of Technology.
  * Reproduction or disclosure of this file or its contents without the prior
  * written consent of DigiPen Institute of Technology is prohibited.
- * File Name: IHittable.cpp
+ * File Name: Material.cpp
  * Purpose: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
  * Language: C++, G++
  * Platform: g++ (Ubuntu 9.3.0-10ubuntu2) 9.3, ThinkPad T430u, Nvidia GT 620M,
@@ -15,10 +15,9 @@
  * Author: Roland Shum, roland.shum@digipen.edu
  * Creation date: 2/15/2021
  * End Header --------------------------------------------------------*/
-#include "stdafx.h"
-#include "IHittable.h"
-#include "Ray.h"
-void HitRecord::SetFaceNormal(const Ray &r, const vec3 &outwardNormal) {
-    frontFace = glm::dot(r.Direction(), outwardNormal) < 0;
-    normal = frontFace ? outwardNormal : -outwardNormal;
+#include "../stdafx.h"
+#include "Material.h"
+
+Color Material::Emitted(double u, double v, const vec3 &p) const {
+    return Color(0);
 }

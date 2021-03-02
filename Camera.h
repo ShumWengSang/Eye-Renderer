@@ -24,7 +24,8 @@ class Ray;
 
 class Camera {
 public:
-    Camera(vec3 lookFrom, vec3 lookAt, vec3 up, double aspectRatio, double fov, double aperture, double focusDist);
+    Camera(vec3 lookFrom, vec3 lookAt, vec3 up, double aspectRatio, double fov, double aperture, double focusDist,
+           double time0 = 0, double time1 = 0);
     Ray getRay(double s, double t) const;
 private:
     vec3 origin;
@@ -34,6 +35,7 @@ private:
 
     vec3 u,v,w;
     double lensRadius;
+    double time0, time1; //Shutter open/close times
 };
 
 

@@ -23,10 +23,12 @@
 Ray Camera::getRay(double s, double t) const {
     vec3 rd = lensRadius * RandomUnitDisk();
     vec3 offset = u * rd.x + v * rd.y;
-    return Ray(origin + offset, lowerLeftCornor + s * horizontal + t * vertical - origin - offset);
+    return Ray(origin + offset, lowerLeftCornor + s * horizontal + t * vertical - origin - offset,
+               randomDouble(time0, time1));
 }
 
-Camera::Camera(vec3 lookFrom, vec3 lookAt, vec3 up, double aspectRatio, double fov, double aperture, double focusDist) {
+Camera::Camera(vec3 lookFrom, vec3 lookAt, vec3 up, double aspectRatio, double fov, double aperture, double focusDist,
+        double time0, double time1) {
 
     const double theta = degreesToRadians(fov);
     const double h = tan(theta/2);
@@ -43,4 +45,6 @@ Camera::Camera(vec3 lookFrom, vec3 lookAt, vec3 up, double aspectRatio, double f
     lowerLeftCornor = origin - (horizontal / 2.0) - (vertical / 2.0) - focusDist * w;
 
     lensRadius = aperture / 2;
+    this->time0 = time0;
+    this->time1 = time1;
 }
