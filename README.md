@@ -18,6 +18,19 @@ Here is the sample output at 50 ray-trace bounces.
 ## Build
 Use CMake to generate project. It should work out of the box with compilers that support OpenMP. This was compiled with MSVC compiler. OpenMP is used to multithread the rendering.
 
+## Render Times
+
+Here is a just a record of performance for OpenMP.
+
+```
+No directives:                                           45.625 seconds
+#pragma omp for                                          44.53  seconds
+#pragma omp parallel for:                                16.963 seconds
+omp_set_num_threads(11); #pragma omp parallel for:       20.29  seconds
+No cout, height parallel                                 13.74  seconds
+Cout, height parallel                                    13.4   seconds
+```
+
 ## Images
 
 Here are some nice images for you to enjoy from the project. Although most of them are rendered in low quality so there are bunch of noise
